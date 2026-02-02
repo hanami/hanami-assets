@@ -1,0 +1,12 @@
+name:
+  gem: hanami-assets
+  constant: Hanami::Assets
+  title: Hanami Assets
+github_org: hanami
+gemspec:
+  authors: ["Hanakai team"]
+  email: ["info@hanakai.org"]
+  summary: "Assets management for Ruby web applications"
+  homepage: "https://hanamirb.org"
+  runtime_dependencies:
+    - ["zeitwerk", "~> 2.6"]

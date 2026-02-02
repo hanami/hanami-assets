@@ -22,6 +22,5 @@ tmp
 mkmf.log
 .rubocop-*
 node_modules/
-.byebug_history
 yarn.lock
 package-lock.json

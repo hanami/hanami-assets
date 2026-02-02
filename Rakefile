@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
-require "rake"
 require "bundler/gem_tasks"
 require "rspec/core/rake_task"
-require "hanami/devtools/rake_tasks"
+require "rubocop/rake_task"
 
 RSpec::Core::RakeTask.new(:spec)
 
-require "rubocop/rake_task"
+desc "Run all tests"
+task test: :spec
 
-RuboCop::RakeTask.new
+RuboCop::RakeTask.new(:rubocop)
 
-task default: %i[spec rubocop]
+desc "Run all linters"
+task lint: :rubocop
+
+task default: %i[lint test]
