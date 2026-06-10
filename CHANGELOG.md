@@ -9,7 +9,11 @@ and this project adheres to [Break Versioning](https://www.taoensso.com/break-ve
 
 ### Added
 
+- Add [specification](SPEC.md) for compliant asset bundlers. (@timriley in #150)
+
 ### Changed
+
+- Require Ruby 3.3 or newer.
 
 ### Deprecated
 
