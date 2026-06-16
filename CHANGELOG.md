@@ -9,11 +9,7 @@ and this project adheres to [Break Versioning](https://www.taoensso.com/break-ve
 
 ### Added
 
-- Add [specification](SPEC.md) for compliant asset bundlers. (@timriley in #150)
-
 ### Changed
-
-- Require Ruby 3.3 or newer.
 
 ### Deprecated
 
@@ -24,6 +20,18 @@ and this project adheres to [Break Versioning](https://www.taoensso.com/break-ve
 ### Security
 
 [Unreleased]: https://github.com/hanami/assets/compare/v2.3.0...HEAD
+
+## [3.0.0.rc1] - 2026-06-16
+
+### Added
+
+- Add [specification](SPEC.md) for compliant asset bundlers. (@timriley in #150)
+
+### Changed
+
+- Require Ruby 3.3 or newer.
+
+[3.0.0.rc1]: https://github.com/hanami/assets/compare/v2.3.0...v3.0.0.rc1
 
 ## [2.3.0] - 2025-11-12
 
