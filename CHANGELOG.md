@@ -19,7 +19,19 @@ and this project adheres to [Break Versioning](https://www.taoensso.com/break-ve
 
 ### Security
 
-[Unreleased]: https://github.com/hanami/assets/compare/v2.3.0...HEAD
+[Unreleased]: https://github.com/hanami/assets/compare/v3.0.0...HEAD
+
+## [3.0.0] - 2026-06-30
+
+### Added
+
+- Add [specification](SPEC.md) for compliant asset bundlers. (@timriley in #150)
+
+### Changed
+
+- Require Ruby 3.3 or newer.
+
+[3.0.0]: https://github.com/hanami/assets/compare/v2.3.0...v3.0.0
 
 ## [3.0.0.rc1] - 2026-06-16
 
