@@ -123,7 +123,7 @@ and this project adheres to [Break Versioning](https://www.taoensso.com/break-ve
 - Removed `Hanami::Assets.deploy`, `.precompile`, `.load!` as precompile process is now handled via JavaScript. (Luca Guidi)
 - Removed `Hanami::Assets.sources`, as third-party libraries should be handled via Yarn. (Luca Guidi)
 - Removed `Hanami::Assets::Config#fingerprint`, as fingerprinting will be always activated. (Luca Guidi)
-- Changed `Hanami::Assets::Config#subresource_integrity`. To activate the feature, pass an array of algorithms to use (e.g. `config.subresource_integrity = ["sha-384"]`). (Luca Guidi)
+- Changed `Hanami::Assets::Config#subresource_integrity`. To activate the feature, pass an array of algorithms to use (e.g. `config.subresource_integrity = ["sha384"]`). (Luca Guidi)
 - Removed `Hanami::Assets::Config#cdn`. To activate the feature, pass the CDN base URL to the initializer of the configuration (`base_url` keyword argument). (Luca Guidi)
 - Removed `Hanami::Assets::Config#javascript_compressor` and `stylesheet_compressor`, as the compression is now handled via JavaScript. (Luca Guidi)
 - Removed `Hanami::Assets::Config#scheme`, `#host`, `#port`, and `#prefix`. Use `base_url` keyword argument to pass to configuration initializer. (Luca Guidi)

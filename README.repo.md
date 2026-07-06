@@ -160,7 +160,7 @@ Subresource Integrity (SRI) is a security mechanism that allows browsers to veri
 ```ruby
 module MyApp
   class App < Hanami::App
-    config.assets.subresource_integrity = ["sha-384"]
+    config.assets.subresource_integrity = ["sha384"]
   end
 end
 ```
