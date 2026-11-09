@@ -22,8 +22,8 @@ $ gem install hanami-assets
 
 ### Command Line (CLI)
 
-During development run `bundle exec hanami server`.
-Your app will start the assets management.
+During development run `bundle exec hanami dev`.
+This starts your app's server and runs `hanami assets watch`, which compiles your assets whenever they change.
 
 ### Helpers
 
@@ -79,7 +79,6 @@ The `hanami` gem ships with the following helpers for assets:
   * `image_tag`
   * `video_tag`
   * `audio_tag`
-  * `path_tag`
 
 ## App Structure
 
@@ -92,7 +91,7 @@ $ tree app/assets
 ├── images
 │   └── favicon.ico
 ├── js
-│   └── app.ts
+│   └── app.js
 └── css
     └── app.css
 ```
@@ -108,8 +107,8 @@ This process includes any kind of asset: other JavaScript files, stylesheets, im
 
 The default entry points are:
 
-  * `app/assets/js/app.ts`
-  * `slices/[slice-name]/assets/js/app.ts`
+  * `app/assets/js/app.js`
+  * `slices/[slice-name]/assets/js/app.js`
 
 You can specify custom Entry Points, by adding an `app.{js,ts,mjs,mts,tsx,jsx}` file into the assets directory of the app or a slice.
 
@@ -120,7 +119,7 @@ An example is: `app/assets/js/login/app.ts` to define a new Entry Point for a Lo
 Except for `js` and `css` directories, all the other directories are considered **static**.
 Their files will be copied as they are to the destination directory.
 
-If you have a custom directory `app/assets/fonts`, all the fonts are copied to the destination direcotry.
+If you have a custom directory `app/assets/fonts`, all the fonts are copied to the destination directory.
 
 #### Destination Directory
 
@@ -139,14 +138,14 @@ By doing so, you can safely cache and deliver updated versions of assets to clie
 
 During the deployment process, Hanami Assets appends to the file name a unique hash.
 
-Example: `app/assets/js/app.ts` -> `public/assets/app-QECGTTYG.js`
+Example: `app/assets/js/app.js` -> `public/assets/app-QECGTTYG.js`
 
-It creates a `/public/assets.json` to map the original asset name to the fingerprint name.
+It creates a `public/assets/assets.json` to map the original asset name to the fingerprint name.
 
-The simple usage of the `js` helper, will be automatically mapped for you:
+The `javascript_tag` helper will automatically map the asset name for you:
 
 ```erb
-<%= assets.js "app" %>
+<%= javascript_tag "app" %>
 ```
 
 ```html
@@ -165,10 +164,10 @@ module MyApp
 end
 ```
 
-Once turned on, it will look at `/public/assets.json`, and helpers such as `javascript` will include an `integrity` and `crossorigin` attribute.
+Once turned on, it will look at `public/assets/assets.json`, and helpers such as `javascript_tag` will include an `integrity` and `crossorigin` attribute.
 
 ```erb
-<%= assets.js "app" %>
+<%= javascript_tag "app" %>
 ```
 
 ```html
@@ -193,15 +192,7 @@ end
 From now on, helpers will return the absolute URL for the asset, hosted on the CDN specified.
 
 ```erb
-<%= javascript 'application' %>
-```
-
-```html
-<script src="https://123.cloudfront.net/assets/application-d1829dc353b734e3adc24855693b70f9.js" type="text/javascript"></script>
-```
-
-```erb
-<%= assets.js "app" %>
+<%= javascript_tag "app" %>
 ```
 
 ```html
@@ -224,7 +215,7 @@ $ bundle exec rake test
 
 ## Contributing
 
-1. Fork it (https://github.com/hanami/assets/fork)
+1. Fork it (https://github.com/hanami/hanami-assets/fork)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
