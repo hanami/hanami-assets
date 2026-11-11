@@ -36,6 +36,17 @@ RSpec.describe "manifest handling" do
       expect { assets["missing.js"] }
         .to raise_error Hanami::Assets::AssetMissingError, /missing.js/
     end
+
+    it "returns the same asset for repeated lookups of a path" do
+      expect(assets["app.js"]).to be(assets["app.js"])
+    end
+
+    it "keeps raising an AssetMissingError for repeated lookups of a missing asset" do
+      2.times do
+        expect { assets["missing.js"] }
+          .to raise_error Hanami::Assets::AssetMissingError, /missing.js/
+      end
+    end
   end
 
   context "no file at configured manifest_path" do

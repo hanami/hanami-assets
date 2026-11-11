@@ -11,6 +11,8 @@ and this project adheres to [Break Versioning](https://www.taoensso.com/break-ve
 
 ### Changed
 
+- Build each `Hanami::Assets::Asset` once per path, rather than on every `Hanami::Assets#[]` lookup. (@parndt)
+
 ### Deprecated
 
 ### Removed

@@ -61,6 +61,7 @@ module Hanami
     def initialize(config:, root:)
       @config = config
       @root = Pathname(root)
+      @assets = {}.freeze
     end
 
     # Returns the asset at the given path.
@@ -72,19 +73,14 @@ module Hanami
     # @api public
     # @since 2.1.0
     def [](path)
-      asset_attrs = manifest
-        .fetch(path) { raise AssetMissingError.new(path) }
-        .transform_keys(&:to_sym)
-        .tap { |attrs|
-          # The `url` attribute we receive from the manifest is actually a path; rename it as such
-          # so our `Asset` attributes make more sense on their own.
-          attrs[:path] = attrs.delete(:url)
-        }
+      @assets.fetch(path) {
+        asset = build_asset(path)
 
-      Asset.new(
-        **asset_attrs,
-        base_url: config.base_url
-      )
+        # The hash is replaced rather than mutated, so no lock is needed around it.
+        @assets = @assets.merge(path => asset).freeze
+
+        asset
+      }
     end
 
     # Returns true if subresource integrity is configured.
@@ -108,6 +104,22 @@ module Hanami
     end
 
     private
+
+    def build_asset(path)
+      asset_attrs = manifest
+        .fetch(path) { raise AssetMissingError.new(path) }
+        .transform_keys(&:to_sym)
+        .tap { |attrs|
+          # The `url` attribute we receive from the manifest is actually a path; rename it as such
+          # so our `Asset` attributes make more sense on their own.
+          attrs[:path] = attrs.delete(:url)
+        }
+
+      Asset.new(
+        **asset_attrs,
+        base_url: config.base_url
+      )
+    end
 
     def manifest
       return @manifest if instance_variable_defined?(:@manifest)
