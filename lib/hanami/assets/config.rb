@@ -51,6 +51,12 @@ module Hanami
       #   @since 2.1.0
       setting :base_url, constructor: -> url { BaseUrl.new(url.to_s) }
 
+      # Define the setting readers up front, so that reading a setting is an ordinary method call
+      # rather than a trip through `method_missing`.
+      settings.each do |setting|
+        define_method(setting.name) { config[setting.name] }
+      end
+
       # @api public
       # @since 2.1.0
       def initialize(**values)

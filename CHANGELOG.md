@@ -11,6 +11,8 @@ and this project adheres to [Break Versioning](https://www.taoensso.com/break-ve
 
 ### Changed
 
+- Define setting readers on `Hanami::Assets::Config` as methods, rather than resolving them through `method_missing` on every read. (@parndt)
+
 ### Deprecated
 
 ### Removed
